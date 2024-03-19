@@ -10,12 +10,11 @@ public class RestrictedCounter extends Counter {
     }
 
     @Override
-    public void increment() {
-        if (getCount() < maxValue) {
-            super.increment();
-        } else {
-            System.out.println("The counter has reached its maximum value.");
+    public void increment() throws IllegalStateException {
+        if (getCount() >= maxValue) {
+            throw new IllegalStateException("The counter has reached its maximum value");
         }
+        super.increment();
     }
 
     public int freeCapacity() {
