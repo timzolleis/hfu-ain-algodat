@@ -32,7 +32,7 @@ public class Counter {
         saved = count;
     }
 
-    public void restore() {
+    public void restore() throws IllegalStateException {
         if (saved == null) {
             throw new IllegalStateException("The counter has not been saved yet.");
         }
