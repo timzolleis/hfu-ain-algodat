@@ -13,4 +13,4 @@ jobs:
           java-version: 21
           cache: maven
       - name: Run tests
-        run: mvn -B test --file pom.xml
+        run: mvn test
