@@ -20,8 +20,8 @@ class RestrictedCounterTest {
             if (i < 15) {
                 counter.increment();
                 final int count = counter.getCount();
-                final String message = String.format("Counter: %s, Free capacity: %s", count, counter.freeCapacity());
-                System.out.println(message);
+                assertEquals(i + 1, count);
+                assertEquals(15 - count, counter.freeCapacity());
             } else {
                 assertThrows(IllegalStateException.class, counter::increment);
             }
@@ -30,8 +30,7 @@ class RestrictedCounterTest {
         for (int i = 0; i < 20; ++i) {
             counter.decrement();
             final int count = counter.getCount();
-            final String message = String.format("Counter: %s, Free capacity: %s", count, counter.freeCapacity());
-            System.out.println(message);
+            assertEquals(15 - count, counter.freeCapacity());
         }
         assertEquals(0, counter.getCount());
     }

@@ -10,7 +10,6 @@ public class FractionTest {
         final int n = 5;
         final Fraction fraction = new Fraction(1, 1);
         for (int i = 2; i <= n; i++) {
-            System.out.println(i);
             fraction.add(new Fraction(1, i));
         }
         Assertions.assertEquals("137/60", fraction.toString());
