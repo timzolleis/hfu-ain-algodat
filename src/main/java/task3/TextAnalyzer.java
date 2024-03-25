@@ -4,8 +4,7 @@ import java.util.*;
 
 public class TextAnalyzer {
 
-
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         if (args.length == 0) {
             System.out.println("No arguments provided");
             return;
@@ -17,13 +16,13 @@ public class TextAnalyzer {
         occurrences.forEach((key, value) -> System.out.println(key + ": " + value));
     }
 
-    public List<Integer> getWordLengths(String[] words) {
+    public List<Integer> getWordLengths(final String[] words) {
         final List<Integer> wordLengths = new ArrayList<>();
         Arrays.stream(words).forEach(word -> wordLengths.add(word.length()));
         return wordLengths;
     }
 
-    public Map<String, Integer> getCharacterOccurrences(String[] words) {
+    public Map<String, Integer> getCharacterOccurrences(final String[] words) {
         final Map<String, Integer> characterOccurrences = new HashMap<>();
         Arrays.stream(words).forEach(word -> {
             String[] characters = word.split("");

@@ -5,7 +5,7 @@ public class Fraction {
     private int denominator;
 
 
-    public Fraction(int numerator, int denominator) throws IllegalArgumentException {
+    public Fraction(final int numerator, final int denominator) throws IllegalArgumentException {
         if (denominator == 0) {
             throw new IllegalArgumentException("Denominator cannot be zero");
         }
@@ -13,7 +13,7 @@ public class Fraction {
         this.denominator = denominator;
     }
 
-    public void add(Fraction fractionToAdd) {
+    public void add(final Fraction fractionToAdd) {
         final int newNumerator = this.numerator * fractionToAdd.denominator + fractionToAdd.numerator * this.denominator;
         final int newDenominator = this.denominator * fractionToAdd.denominator;
 
@@ -22,7 +22,7 @@ public class Fraction {
         this.denominator = newDenominator / gcd;
     }
 
-    public void multiply(Fraction fractionToMultiply) {
+    public void multiply(final Fraction fractionToMultiply) {
         this.numerator *= fractionToMultiply.numerator;
         this.denominator *= fractionToMultiply.denominator;
         final int gcd = findGcd(this.numerator, this.denominator);
@@ -30,12 +30,12 @@ public class Fraction {
         this.denominator /= gcd;
     }
 
-    public void divide(Fraction fractionToDivide) {
+    public void divide(final Fraction fractionToDivide) {
         final Fraction reversed = new Fraction(fractionToDivide.denominator, fractionToDivide.numerator);
         this.multiply(reversed);
     }
 
-    private int findGcd(int a, int b) {
+    private int findGcd(final int a, final int b) {
         if (b == 0) {
             return a;
         }

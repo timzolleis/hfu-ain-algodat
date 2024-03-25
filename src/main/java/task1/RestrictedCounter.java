@@ -4,7 +4,7 @@ public class RestrictedCounter extends Counter {
 
     private final int maxValue;
 
-    public RestrictedCounter(int maxValue) {
+    public RestrictedCounter(final int maxValue) {
         super();
         this.maxValue = maxValue;
     }
@@ -17,7 +17,7 @@ public class RestrictedCounter extends Counter {
         super.increment();
     }
 
-    public int freeCapacity() {
+    public int getFreeCapacity() {
         return maxValue - getCount();
     }
 
