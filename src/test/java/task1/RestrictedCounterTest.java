@@ -28,9 +28,14 @@ class RestrictedCounterTest {
         }
         assertEquals(15, counter.getCount());
         for (int i = 0; i < 20; ++i) {
-            counter.decrement();
-            final int count = counter.getCount();
-            assertEquals(15 - count, counter.getFreeCapacity());
+            if (i < 15){
+                counter.decrement();
+                final int count = counter.getCount();
+                assertEquals(15 - i - 1, count);
+                assertEquals(15 - count, counter.getFreeCapacity());
+            } else {
+                assertThrows(IllegalStateException.class, counter::decrement);
+            }
         }
         assertEquals(0, counter.getCount());
     }
