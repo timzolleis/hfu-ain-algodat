@@ -16,7 +16,8 @@ public class Counter {
     public void decrement() {
         if (count >= 1) {
             count--;
-
+        } else {
+            throw new IllegalStateException("The counter cannot be negative.");
         }
     }
 

@@ -22,6 +22,7 @@ class CounterTest {
         counter.increment();
         counter.decrement();
         assertEquals(0, counter.getCount());
+        assertThrows(IllegalStateException.class, counter::decrement);
     }
 
     @Test
