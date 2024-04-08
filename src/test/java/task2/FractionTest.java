@@ -5,6 +5,14 @@ import org.junit.jupiter.api.Test;
 
 public class FractionTest {
 
+
+    @Test
+    void testBasicSum() {
+        final Fraction fraction = new Fraction(1, 2);
+        fraction.add(new Fraction(1, 4));
+        Assertions.assertEquals("3/4", fraction.toString());
+    }
+
     @Test
     void testSumWith5() {
         final int n = 5;
