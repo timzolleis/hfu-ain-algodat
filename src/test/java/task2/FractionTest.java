@@ -54,4 +54,9 @@ public class FractionTest {
         Assertions.assertEquals("163/60", fractionWith5.toString());
     }
 
+    @Test
+    void testToString() {
+        final Fraction fraction = new Fraction(1, 2);
+        Assertions.assertEquals("1/2", fraction.toString());
+    }
 }
