@@ -1,5 +1,8 @@
 package task2;
 
+import lombok.Getter;
+
+@Getter
 public class Fraction {
     private int numerator;
     private int denominator;
