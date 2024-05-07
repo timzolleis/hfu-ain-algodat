@@ -25,11 +25,19 @@ public class TextAnalyzer {
     public Map<String, Integer> getCharacterOccurrences(final String[] words) {
         final Map<String, Integer> characterOccurrences = new HashMap<>();
         Arrays.stream(words).forEach(word -> {
-            String[] characters = word.split("");
+            final String[] characters = word.split("");
             Arrays.stream(characters).forEach(character -> {
-                characterOccurrences.put(character.toUpperCase(), characterOccurrences.getOrDefault(character.toUpperCase(), 0) + 1);
+                final String key = String.valueOf(TextAnalyzer.ToUppercase(character.charAt(0)));
+                characterOccurrences.put(key, characterOccurrences.getOrDefault(key, 0) + 1);
             });
         });
         return characterOccurrences;
+    }
+
+    private static char ToUppercase(final char c) {
+        if (c >= 'a' && c <= 'z') {
+            return (char) (c - 32);
+        }
+        return c;
     }
 }
