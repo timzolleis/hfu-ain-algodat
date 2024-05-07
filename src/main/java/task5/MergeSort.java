@@ -19,7 +19,7 @@ public class MergeSort {
         final int newRightLength = length - newLeftLength;
 
         T[] leftArray = Arrays.copyOfRange(arrayToSort, 0, newLeftLength);
-        T[] rightArray = Arrays.copyOfRange(arrayToSort, newLeftLength, arrayToSort.length);
+        T[] rightArray = Arrays.copyOfRange(arrayToSort, newLeftLength, length);
         //Sort left
         sort(leftArray, newLeftLength);
         //Sort right
