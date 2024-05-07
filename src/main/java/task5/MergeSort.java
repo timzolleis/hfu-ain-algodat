@@ -4,31 +4,22 @@ import java.util.Arrays;
 
 public class MergeSort {
 
-    public <T> void mergeSort(Comparable<T>[] arrayToSort) {
+    public <T extends Comparable<? super T>> void mergeSort(T[] arrayToSort) {
         sort(arrayToSort, arrayToSort.length);
     }
 
-    private <T> void sort(Comparable<T>[] arrayToSort, int length) {
+    private <T extends Comparable<? super T>> void sort(final T[] arrayToSort, final int length) {
         if (length < 2) {
             return;
         }
         //Split arrays into half
-        int mid = length / 2;
 
         //Create new arrays with new lengths
-        int newLeftLength = mid;
-        int newRightLength = length - mid;
+        final int newLeftLength = length / 2;
+        final int newRightLength = length - newLeftLength;
 
-        Comparable<T>[] leftArray = new Comparable[newLeftLength];
-        Comparable<T>[] rightArray = new Comparable[newRightLength];
-
-        //Copy values in arrays
-        for (int index = 0; index < newLeftLength; index++) {
-            leftArray[index] = arrayToSort[index];
-        }
-        for (int index = newLeftLength; index < length; index++) {
-            rightArray[index - newLeftLength] = arrayToSort[index];
-        }
+        T[] leftArray = Arrays.copyOfRange(arrayToSort, 0, newLeftLength);
+        T[] rightArray = Arrays.copyOfRange(arrayToSort, newLeftLength, arrayToSort.length);
         //Sort left
         sort(leftArray, newLeftLength);
         //Sort right
@@ -37,28 +28,30 @@ public class MergeSort {
         merge(arrayToSort, leftArray, rightArray, newLeftLength, newRightLength);
     }
 
-    private void merge(Comparable[] arrayToSort, Comparable[] leftArray, Comparable[] rightArray, int leftArrayLength, int rightArrayLength) {
+    private <T extends Comparable<? super T>> void merge(final T[] arrayToSort, final T[] leftArray, final T[] rightArray, final int leftArrayLength, final int rightArrayLength) {
         int leftArrayIndex = 0;
         int rightArrayIndex = 0;
         int mainArrayIndex = 0;
 
         // Move through the arrays while i is less than leftIndex and j is less than rightIndex
         while (leftArrayIndex < leftArrayLength && rightArrayIndex < rightArrayLength) {
-            boolean leftElementIsBiggerThanRightElement = leftArray[leftArrayIndex].compareTo(rightArray[rightArrayIndex]) < 0;
+            final T leftElement = leftArray[leftArrayIndex];
+            final T rightElement = rightArray[rightArrayIndex];
+            final boolean leftLessThanRight = leftElement.compareTo(rightElement) < 0;
 
-            if (leftElementIsBiggerThanRightElement) {
+            if (leftLessThanRight) {
                 arrayToSort[mainArrayIndex++] = leftArray[leftArrayIndex++];
             } else {
                 arrayToSort[mainArrayIndex++] = rightArray[rightArrayIndex++];
             }
         }
 
-        // Copy remaining elements from left array
+        // Copy remaining elements from the left array
         while (leftArrayIndex < leftArrayLength) {
             arrayToSort[mainArrayIndex++] = leftArray[leftArrayIndex++];
         }
 
-        // Copy remaining elements from right array
+        // Copy remaining elements from the right array
         while (rightArrayIndex < rightArrayLength) {
             arrayToSort[mainArrayIndex++] = rightArray[rightArrayIndex++];
 
