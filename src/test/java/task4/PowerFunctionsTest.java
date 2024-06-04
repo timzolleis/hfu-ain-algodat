@@ -1,7 +1,6 @@
 package task4;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.Random;
 
@@ -16,6 +15,7 @@ class PowerFunctionsTest {
     }
 
     @Test
+    @Order(0)
     void power() {
         final double base = 2;
         final int exponent = 3;
@@ -27,6 +27,7 @@ class PowerFunctionsTest {
     }
 
     @Test
+    @Order(1)
     void fastPower() {
         final double base = 2;
         final int exponent = 3;
@@ -36,7 +37,29 @@ class PowerFunctionsTest {
         System.out.println("Calculated 2^3 in " + count + " iterations");
     }
 
+
     @Test
+    @Order(2)
+    void powerWithHigherNumbers() {
+        final double base = 10;
+        final int exponent = 10;
+        final double result = PowerFunctions.power(base, exponent);
+        final int count = PowerFunctions.getPowerCount();
+        System.out.println("Calculated 10^10 (" + result + ") in " + count + " iterations");
+    }
+
+    @Test
+    @Order(3)
+    void fastPowerWithHigherNumbers() {
+        final double base = 10;
+        final int exponent = 10;
+        final double result = PowerFunctions.fastPower(base, exponent);
+        final int count = PowerFunctions.getPowerCount();
+        System.out.println("Calculated 10^10 (" + result + ") in " + count + " iterations");
+    }
+
+    @Test
+    @Order(4)
     void compareMethods() {
         final int iterations = 10000;
         final Random random = new Random();

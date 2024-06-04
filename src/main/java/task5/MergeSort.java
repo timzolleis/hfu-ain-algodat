@@ -12,8 +12,6 @@ public class MergeSort {
         if (length < 2) {
             return;
         }
-        //Split arrays into half
-
         //Create new arrays with new lengths
         final int newLeftLength = length / 2;
         final int newRightLength = length - newLeftLength;
