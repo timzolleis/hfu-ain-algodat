@@ -37,4 +37,8 @@ public class USD_Bill extends USD implements Bill {
         return null;
     }
 
+    @Override
+    public final int compareTo(final PaymentMethod o) {
+        return Double.compare(this.getValue(), o.getValue());
+    }
 }

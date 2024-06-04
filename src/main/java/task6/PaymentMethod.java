@@ -3,7 +3,7 @@ package task6;
 import lombok.Getter;
 
 @Getter
-public abstract class PaymentMethod {
+public abstract class PaymentMethod implements Comparable<PaymentMethod> {
     private final String currency;
     private final double value;
 
@@ -17,4 +17,5 @@ public abstract class PaymentMethod {
     public final String toString() {
         return (value + " " + currency);
     }
+
 }

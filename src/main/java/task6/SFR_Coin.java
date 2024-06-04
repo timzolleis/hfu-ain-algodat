@@ -41,5 +41,9 @@ public class SFR_Coin extends SFR implements Coin {
         return null;
     }
 
+    @Override
+    public final int compareTo(final PaymentMethod o) {
+        return Double.compare(this.getValue(), o.getValue());
+    }
 }
 

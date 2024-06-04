@@ -40,4 +40,8 @@ class USD_Coin extends USD implements Coin {
         return null;
     }
 
+    @Override
+    public final int compareTo(final PaymentMethod o) {
+        return Double.compare(this.getValue(), o.getValue());
+    }
 }
