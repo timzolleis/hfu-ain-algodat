@@ -2,6 +2,8 @@ package task2;
 
 import lombok.Getter;
 
+import java.util.Objects;
+
 @Getter
 public class Fraction {
     private int numerator;
@@ -43,6 +45,10 @@ public class Fraction {
             return a;
         }
         return findGcd(b, a % b);
+    }
+
+    public int hashCode() {
+        return Objects.hash(numerator, denominator);
     }
 
     @Override
