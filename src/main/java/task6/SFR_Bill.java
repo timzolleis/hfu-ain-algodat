@@ -35,10 +35,5 @@ public class SFR_Bill extends SFR implements Bill {
                 return dataProperty;
         return null;
     }
-
-    @Override
-    public final int compareTo(final PaymentMethod o) {
-        return Double.compare(getValue(), o.getValue());
-    }
 }
 

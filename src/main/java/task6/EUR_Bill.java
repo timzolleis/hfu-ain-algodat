@@ -37,8 +37,4 @@ public class EUR_Bill extends EUR implements Bill {
         return null;
     }
 
-    @Override
-    public final int compareTo(final PaymentMethod o) {
-        return Double.compare(this.getValue(), o.getValue());
-    }
 }

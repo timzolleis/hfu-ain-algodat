@@ -2,10 +2,12 @@ package task8;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Prime {
 
-    private final List<Integer> integers = new ArrayList<>();
+    private final Set<Integer> integers = new TreeSet<>();
     private final List<Integer> foundPrimes = new ArrayList<>();
 
     public Prime(final int n) {
@@ -15,11 +17,10 @@ public class Prime {
     }
 
     public List<Integer> getPrimes() {
-        final List<Integer> primes = new ArrayList<>();
         while (!integers.isEmpty()) {
-            primes.add(getNextPrime());
+            getNextPrime();
         }
-        return primes;
+        return foundPrimes;
     }
 
     public List<Integer[]> getPrimePairs() {
@@ -39,11 +40,10 @@ public class Prime {
     }
 
 
-    private int getNextPrime() {
-        final int prime = integers.getFirst();
+    private void getNextPrime() {
+        final int prime = integers.iterator().next();
         integers.removeIf(i -> i % prime == 0);
         foundPrimes.add(prime);
-        return prime;
     }
 
 

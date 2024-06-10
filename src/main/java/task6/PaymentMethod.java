@@ -18,4 +18,9 @@ public abstract class PaymentMethod implements Comparable<PaymentMethod> {
         return (value + " " + currency);
     }
 
+    @Override
+    public final int compareTo(final PaymentMethod o) {
+        return Double.compare(this.getValue(), o.getValue());
+    }
+
 }

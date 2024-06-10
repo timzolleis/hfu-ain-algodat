@@ -19,10 +19,8 @@ public class MoneyTest {
 
     @Test
     void printPaymentMethods() {
-        PaymentMethod[] invalidPaymentMethods = Arrays.stream(money).filter(m -> !m.isValid()).toArray(PaymentMethod[]::new);
+        PaymentMethod[] invalidPaymentMethods = Arrays.stream(money).filter(PaymentMethod::isValid).toArray(PaymentMethod[]::new);
         PaymentMethod[] validPaymentMethods = Arrays.stream(money).filter(PaymentMethod::isValid).toArray(PaymentMethod[]::new);
-        System.out.println("Invalid money: " + invalidPaymentMethods.length);
-        System.out.println(Arrays.toString(validPaymentMethods));
         //Assertions
         assertEquals(2, invalidPaymentMethods.length);
         assertEquals(7, validPaymentMethods.length);
@@ -33,7 +31,6 @@ public class MoneyTest {
     void accumulateByCurrency() {
         final HashMap<String, Double> currencyMap = new HashMap<>();
         Arrays.stream(money).filter(PaymentMethod::isValid).forEach(m -> currencyMap.merge(m.getCurrency(), m.getValue(), Double::sum));
-        currencyMap.forEach((k, v) -> System.out.println(k + ": " + v));
         //Assertions
         assertEquals(100.85, currencyMap.get("USD"));
         assertEquals(70.0, currencyMap.get("EUR"));
@@ -45,7 +42,6 @@ public class MoneyTest {
     void accumulateWeight() {
         final Coin[] validCoins = Arrays.stream(money).filter(PaymentMethod::isValid).filter(element -> element instanceof Coin).toArray(Coin[]::new);
         final double totalWeight = Arrays.stream(validCoins).mapToDouble(Coin::getWeight).sum();
-        System.out.println("Total weight: " + totalWeight);
         assertEquals(21.48, totalWeight);
     }
 
@@ -53,7 +49,6 @@ public class MoneyTest {
     void accumulateArea() {
         final Bill[] validBilds = Arrays.stream(money).filter(PaymentMethod::isValid).filter(element -> element instanceof Bill).toArray(Bill[]::new);
         final double totalArea = Arrays.stream(validBilds).mapToDouble(bill -> bill.getLength() * bill.getWidth()).sum();
-        System.out.println("Total area: " + totalArea + "cm²");
         assertEquals(30704.9002, totalArea);
     }
 
@@ -61,7 +56,6 @@ public class MoneyTest {
     void accumulateCoinHeight() {
         final Coin[] validCoins = Arrays.stream(money).filter(PaymentMethod::isValid).filter(element -> element instanceof Coin).toArray(Coin[]::new);
         final double totalHeight = Arrays.stream(validCoins).mapToDouble(Coin::getThickness).sum();
-        System.out.println("Total height: " + totalHeight + "cm");
         assertEquals(6.5, totalHeight);
     }
 
@@ -70,9 +64,17 @@ public class MoneyTest {
         MergeSort mergeSort = new MergeSort();
         mergeSort.mergeSort(money);
         System.out.println(Arrays.toString(money));
+        assertEquals(0.1, money[0].getValue());
+        assertEquals(0.2, money[1].getValue());
+        assertEquals(0.25, money[2].getValue());
+        assertEquals(0.5, money[3].getValue());
+        assertEquals(0.5, money[4].getValue());
+        assertEquals(5, money[5].getValue());
+        assertEquals(20, money[6].getValue());
+        assertEquals(50, money[7].getValue());
+        assertEquals(100, money[8].getValue());
+
     }
-
-
 
 }
 

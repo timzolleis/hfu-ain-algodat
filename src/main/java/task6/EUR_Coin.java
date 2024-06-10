@@ -42,10 +42,5 @@ class EUR_Coin extends EUR implements Coin {
         return null;
     }
 
-
-    @Override
-    public final int compareTo(final PaymentMethod o) {
-        return Double.compare(this.getValue(), o.getValue());
-    }
 }
 

@@ -6,5 +6,6 @@ public abstract class EUR extends PaymentMethod {
     }
 
     public abstract boolean isValid();
+
 }
 
