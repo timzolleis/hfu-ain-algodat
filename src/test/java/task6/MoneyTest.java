@@ -19,7 +19,7 @@ public class MoneyTest {
 
     @Test
     void printPaymentMethods() {
-        PaymentMethod[] invalidPaymentMethods = Arrays.stream(money).filter(PaymentMethod::isValid).toArray(PaymentMethod[]::new);
+        PaymentMethod[] invalidPaymentMethods = Arrays.stream(money).filter(method -> !method.isValid()).toArray(PaymentMethod[]::new);
         PaymentMethod[] validPaymentMethods = Arrays.stream(money).filter(PaymentMethod::isValid).toArray(PaymentMethod[]::new);
         //Assertions
         assertEquals(2, invalidPaymentMethods.length);
