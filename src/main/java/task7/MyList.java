@@ -27,14 +27,14 @@ public class MyList<T> {
 
     public final T get(final int index) {
         this.validateIndex(index);
-        ListNode<T> node = this.getNodeAtIndex(index).orElseThrow();
+        final ListNode<T> node = this.getNodeAtIndex(index).orElseThrow();
         return node.getValue();
     }
 
     public final T remove(final int index) {
         this.validateIndex(index);
-        ListNode<T> currentNode = this.getNodeAtIndex(index).orElseThrow();
-        ListNode<T> previousNode = this.getNodeAtIndex(index - 1).orElse(null);
+        final ListNode<T> currentNode = this.getNodeAtIndex(index).orElseThrow();
+        final ListNode<T> previousNode = this.getNodeAtIndex(index - 1).orElse(null);
         //Navigate to the node to be removed while keeping track of the node before
         if (previousNode == null) {
             this.updateHead(currentNode.getNext());
