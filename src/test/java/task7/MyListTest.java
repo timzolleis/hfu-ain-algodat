@@ -3,7 +3,8 @@ package task7;
 import org.junit.jupiter.api.Test;
 import task2.Fraction;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class MyListTest {
 
@@ -57,9 +58,9 @@ class MyListTest {
         myList.add(new Fraction(1, 2));
         myList.add(new Fraction(1, 3));
         myList.add(new Fraction(1, 4));
-        assertEquals(new Fraction(1, 2).hashCode(), myList.get(0).hashCode());
-        assertEquals(new Fraction(1, 3).hashCode(), myList.get(1).hashCode());
-        assertEquals(new Fraction(1, 4).hashCode(), myList.get(2).hashCode());
+        assertEquals(new Fraction(1, 2), myList.get(0));
+        assertEquals(new Fraction(1, 3), myList.get(1));
+        assertEquals(new Fraction(1, 4), myList.get(2));
         assertEquals(3, myList.getSize());
 
     }

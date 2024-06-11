@@ -51,6 +51,17 @@ public class Fraction {
         return Objects.hash(numerator, denominator);
     }
 
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final Fraction fraction = (Fraction) o;
+        return numerator == fraction.numerator && denominator == fraction.denominator;
+    }
+
     @Override
     public String toString() {
         return String.format("%d/%d", numerator, denominator);
