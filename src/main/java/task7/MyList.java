@@ -2,6 +2,10 @@ package task7;
 
 import lombok.Getter;
 
+import java.util.Objects;
+import java.util.Optional;
+import java.util.stream.Stream;
+
 public class MyList<T> {
 
     private ListNode<T> head;
@@ -23,35 +27,42 @@ public class MyList<T> {
 
     public final T get(final int index) {
         this.validateIndex(index);
-        ListNode<T> currentNode = head;
-        for (int i = 0; i < index; i++) {
-            currentNode = currentNode.getNext();
-        }
-        return currentNode.getValue();
+        ListNode<T> node = this.getNodeAtIndex(index).orElseThrow();
+        return node.getValue();
     }
 
     public final T remove(final int index) {
         this.validateIndex(index);
-        ListNode<T> currentNode = this.head;
-        ListNode<T> previousNode = null;
+        ListNode<T> currentNode = this.getNodeAtIndex(index).orElseThrow();
+        ListNode<T> previousNode = this.getNodeAtIndex(index - 1).orElse(null);
         //Navigate to the node to be removed while keeping track of the node before
-        for (int i = 0; i < index; i++) {
-            previousNode = currentNode;
-            currentNode = currentNode.getNext();
-        }
-        //If we dont have a previous node, we are removing the head, so we need to update this.head
         if (previousNode == null) {
-            this.head = currentNode.getNext();
+            this.updateHead(currentNode.getNext());
         } else {
             previousNode.setNext(currentNode.getNext());
         }
         //If we are at the last node, we need to set the tail to the previous node
         if (currentNode.getNext() == null) {
-            this.tail = previousNode;
+            this.updateTail(previousNode);
         }
         //Decrease the size of the list to reflect the removal
         this.decreaseSize();
         return currentNode.getValue();
+    }
+
+
+    private void updateHead(final ListNode<T> node) {
+        this.head = node;
+    }
+
+    private void updateTail(final ListNode<T> node) {
+        this.tail = node;
+    }
+
+    private Optional<ListNode<T>> getNodeAtIndex(final int index) {
+        return Stream.iterate(this.head, Objects::nonNull, ListNode::getNext)
+                .skip(index)
+                .findFirst();
     }
 
 
